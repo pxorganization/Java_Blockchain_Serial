@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "a6c91f0d-a2df-4323-ad4e-323aaaabb97f",
+		"name": "BlockchainCode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38156170"
+	},
+	"item": [
+		{
+			"name": "AddOneProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/add?productCode=E29301&title=Towel&price=6.30&description=New&category=Bath",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"add"
+					],
+					"query": [
+						{
+							"key": "productCode",
+							"value": "E29301"
+						},
+						{
+							"key": "title",
+							"value": "Towel"
+						},
+						{
+							"key": "price",
+							"value": "6.30"
+						},
+						{
+							"key": "description",
+							"value": "New"
+						},
+						{
+							"key": "category",
+							"value": "Bath"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllProducts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStatisticsByTitle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/statistics?title=Milk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"statistics"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Milk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductByKey",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Title</th>\r",
+							"        <th>Price</th>\r",
+							"        <th>Description</th>\r",
+							"        <th>Category</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response}}\r",
+							"        <tr>\r",
+							"            <td>{{title}}</td>\r",
+							"            <td>{{price}}</td>\r",
+							"            <td>{{description}}</td>\r",
+							"            <td>{{category}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/search?select=title&value=Milk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "title"
+						},
+						{
+							"key": "value",
+							"value": "Milk"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
